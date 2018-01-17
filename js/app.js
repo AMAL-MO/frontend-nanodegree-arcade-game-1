@@ -1,4 +1,4 @@
-var Enemy = function (x, y, speed) {
+var Enemy = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -10,7 +10,7 @@ var Enemy = function (x, y, speed) {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function (dt) {
+Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
 
     if (this.x >= 505) {
@@ -27,26 +27,26 @@ Enemy.prototype.render = function () {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function (x, y, speed) {
+var Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.sprite = 'images/char-cat-girl.png';
 };
 
-Player.prototype.update = function () {
+Player.prototype.update = function() {
 
 }
 
 
-Player.prototype.render = function () {
+Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     displayScoreLevel(score, gameLevel);
 
 };
 
 
-Player.prototype.handleInput = function (keyPress) {
+Player.prototype.handleInput = function(keyPress) {
     switch (keyPress) {
         case 'left':
             this.x -= this.speed + 50;
@@ -64,7 +64,7 @@ Player.prototype.handleInput = function (keyPress) {
 };
 
 
-var displayScoreLevel = function (aScore, aLevel) {
+var displayScoreLevel = function(aScore, aLevel) {
     var canvas = document.getElementsByTagName('canvas');
     var firstCanvasTag = canvas[0];
 
@@ -74,16 +74,17 @@ var displayScoreLevel = function (aScore, aLevel) {
     document.body.insertBefore(scoreLevelDiv, firstCanvasTag[0]);
 };
 
-var checkCollision = function (anEnemy) {
+Enemy.prototype.checkCollision = function() {
 
     if (
-        player.y + 131 >= anEnemy.y + 90 &&
-        player.x + 25 <= anEnemy.x + 88 &&
-        player.y + 73 <= anEnemy.y + 135 &&
-        player.x + 76 >= anEnemy.x + 11) {
+        player.y + 131 >= this.y + 90 &&
+        player.x + 25 <= this.x + 88 &&
+        player.y + 73 <= this.y + 135 &&
+        player.x + 76 >= this.x + 11) {
         console.log('collided');
         player.x = 202.5;
         player.y = 383;
+
     }
 
     if (player.y + 63 <= 0) {
@@ -110,10 +111,11 @@ var checkCollision = function (anEnemy) {
     if (player.x < 2.5) {
         player.x = 2.5;
     }
+
 };
 
 // Increase number of enemies on screen based on player's score
-var increaseDifficulty = function (numEnemies) {
+var increaseDifficulty = function(numEnemies) {
     // remove all previous enemies on canvas
     allEnemies.length = 0;
 
@@ -140,7 +142,7 @@ allEnemies.push(enemy);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', function(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',

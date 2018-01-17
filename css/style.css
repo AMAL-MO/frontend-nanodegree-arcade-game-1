@@ -1,9 +1,8 @@
 body {
   text-align: center;
-  background-color: #A9F5F2;
+  background-color: #a9f5f2;
 }
-h1{
+h1 {
   font: bold 30px "Open Sans", sans-serif;
-  position:center;
-  color:#FF8000;
+  color:#ff8000;
 }
